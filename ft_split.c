@@ -6,13 +6,13 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 17:30:07 by sylvain           #+#    #+#             */
-/*   Updated: 2021/12/13 18:42:39 by sylvain          ###   ########.fr       */
+/*   Updated: 2021/12/14 15:09:07 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int	words;
 
