@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slosey <slosey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:43:51 by slosey            #+#    #+#             */
-/*   Updated: 2021/10/27 15:43:52 by slosey           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:57:10 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t	i;
 
-	if (!s)
-		return (NULL);
 	i = 0;
 	while (i < n)
 	{
