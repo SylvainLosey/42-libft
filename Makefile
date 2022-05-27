@@ -1,75 +1,33 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/27 17:56:24 by sylvain           #+#    #+#              #
-#    Updated: 2022/05/27 17:59:47 by sylvain          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# Adapted from https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
+NAME ?= libft.a
+SRC_DIRS ?= ./src
 
-NAME		=	libft.a
-INCLUDES	=	include/
-SRCS_DIR 	=	src/
-OBJS_DIR	=	obj/
-CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -I
-RM			=	rm -f
-AR			=	ar rcs
+SRCS := $(shell find $(SRC_DIRS) -name '*.c')
+OBJS := $(addsuffix .o,$(basename $(SRCS)))
+DEPS := $(OBJS:.o=.d)
 
-#Colors
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -Wall -Wextra -Werror
 
-#Sources
-FILES       =	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_strlen ft_toupper ft_tolower ft_memset ft_bzero ft_memcpy ft_memmove ft_strlcpy ft_strlcat ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
-SRC_FILES 	= 	$(addprefix $(SRC_FILES), $(FILES))
+all: $(NAME)
 
-SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-###
-
-OBJSF		=	.cache_exists
-
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
-			@ranlib $(NAME)
-			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
-
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJSF):
-			@mkdir -p $(OBJS_DIR)
-
+# %.c.o: %.c
+# 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
-			@$(RM) -rf $(OBJS_DIR)
-			@$(RM) -f $(OBJSF)
-			@echo "$(BLUE)libft objects files cleaned!$(DEF_COLOR)"
+	$(RM) $(OBJS) $(DEPS)
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+fclean: clean
+	$(RM) $(NAME)
 
-re:			fclean all
-			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+re: fclean all
 
-norm:
-	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
+.PHONY: clean
 
-.PHONY:		all clean fclean re norm
+-include $(DEPS)
