@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:40:34 by slosey            #+#    #+#             */
-/*   Updated: 2022/05/28 14:18:40 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/05/28 16:57:12 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <limits.h>
+
+/*
+** -------------------------- Structs ---------------------------------
+*/
+typedef struct s_node
+{
+    int             value;
+    struct s_node   *next;
+}   t_node;
 
 /*
 ** -------------------------- Chars ---------------------------------
@@ -84,5 +93,15 @@ char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
+
+/*
+** -------------------------- Linked lists ---------------------------------
+*/
+
+void    print_list(t_node *head);
+t_node  *create_new_node(int value);
+t_node  *insert_at_head(t_node **head, t_node *node_to_insert);
+void    insert_after_node(t_node *node_to_insert_after, t_node *node_to_insert);
+t_node  *find_node(t_node *head, int value);
 
 #endif
