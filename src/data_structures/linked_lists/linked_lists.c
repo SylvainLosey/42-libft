@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:54:23 by sylvain           #+#    #+#             */
-/*   Updated: 2022/06/03 14:12:40 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:02:35 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,6 @@ t_node	*insert_at_head(t_node **head, t_node *node_to_insert)
 	node_to_insert->next = *head;
 	*head = node_to_insert;
 	return (node_to_insert);
-}
-
-t_node	*find_node(t_node *head, int value)
-{
-	t_node	*tmp;
-
-	tmp = head;
-	while (tmp != NULL)
-	{
-		if (tmp->value == value)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (NULL);
 }
 
 void	insert_after_node(t_node *node_to_insert_after, t_node *node_to_insert)

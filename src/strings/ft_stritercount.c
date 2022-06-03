@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_stritercount.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 15:44:11 by slosey            #+#    #+#             */
-/*   Updated: 2021/12/14 17:12:28 by sylvain          ###   ########.fr       */
+/*   Created: 2022/06/03 16:53:36 by sylvain           #+#    #+#             */
+/*   Updated: 2022/06/03 17:05:09 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+// This function traverses a string and counts the number of times 
+// the function taken as parameter returns true
+int	ft_stritercount(char *str, bool (*f)(int))
 {
-	char	*current;
+	int	i;
 
-	current = NULL;
-	while (*s)
+	i = 0;
+	while (*str)
 	{
-		if (*s == (char) c)
-			current = (char *) s;
-		s++;
+		if (f(*str))
+			i++;
+		str++;
 	}
-	if (*s == (char) c)
-		current = (char *) s;
-	return (current);
+	return (i);
 }

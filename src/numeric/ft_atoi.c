@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:43:37 by slosey            #+#    #+#             */
-/*   Updated: 2022/05/27 17:59:20 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/06/03 16:48:06 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	char_to_int(char c)
 	return (c - 48);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	result;
-	int	sign;
+	long	result;
+	int		sign;
 
 	while (is_space(*str))
 		str++;

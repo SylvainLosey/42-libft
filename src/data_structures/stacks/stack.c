@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 10:13:03 by sylvain           #+#    #+#             */
-/*   Updated: 2022/06/03 14:12:20 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:17:41 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,32 @@ bool	push(t_stack *stack, int value)
 	return (true);
 }
 
-bool	pop(t_stack *stack)
+// Beware: this function doesn't handle an empty stack correctly
+int	pop(t_stack *stack)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
+	int		value;
 
-	if (*stack == NULL)
-		return (false);
-	tmp = stack;
+	tmp = *stack;
 	*stack = (*stack)->next;
+	value = tmp->value;
 	free(tmp);
-	return (true);
+	return (value);
 }
 
 void	print_stack(t_stack *stack)
 {
 	t_node	*tmp;
 
+	if (*stack == NULL)
+		ft_printf(" Empty stack");
 	tmp = *stack;
 	while (tmp != NULL)
 	{
-		ft_printf("%d\n", tmp->value);
+		ft_printf(" | %d", tmp->value);
 		tmp = tmp->next;
 	}
+	ft_printf("\n");
 }
 
 int	stack_length(t_stack *stack)
