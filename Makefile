@@ -9,7 +9,8 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -Wall -Wextra -Werror
+# TODO: Remove debug flag
+CPPFLAGS ?= $(INC_FLAGS) -g -Wall -Wextra -Werror
 
 all: $(NAME)
 
