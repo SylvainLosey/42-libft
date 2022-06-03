@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:40:34 by slosey            #+#    #+#             */
-/*   Updated: 2022/06/03 10:55:46 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:09:34 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 */
 typedef struct s_node
 {
-    int             value;
-    struct s_node   *next;
-}   t_node;
+	int				value;
+	struct s_node	*next;
+}	t_node;
 
-typedef t_node* t_stack;
+typedef t_node*	t_stack;
 
 /*
 ** -------------------------- Chars ---------------------------------
@@ -101,18 +101,19 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n);
 ** -------------------------- Linked lists ---------------------------------
 */
 
-void    print_list(t_node *head);
-t_node  *create_new_node(int value);
-t_node  *insert_at_head(t_node **head, t_node *node_to_insert);
-void    insert_after_node(t_node *node_to_insert_after, t_node *node_to_insert);
-t_node  *find_node(t_node *head, int value);
+void	print_list(t_node *head);
+t_node	*create_new_node(int value);
+t_node	*insert_at_head(t_node **head, t_node *node_to_insert);
+void	insert_after_node(t_node *node_to_insert_after, t_node *node_to_insert);
+t_node	*find_node(t_node *head, int value);
 
 /*
 ** -------------------------- Stacks ---------------------------------
 */
 
-bool    push(t_stack *stack, int value);
-bool    pop(t_stack *stack);
-void    print_stack(t_stack *stack);
+bool	push(t_stack *stack, int value);
+bool	pop(t_stack *stack);
+void	print_stack(t_stack *stack);
+int		stack_length(t_stack *stack);
 
 #endif
