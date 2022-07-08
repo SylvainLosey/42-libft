@@ -6,7 +6,7 @@
 /*   By: sylvain <sylvain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:40:34 by slosey            #+#    #+#             */
-/*   Updated: 2022/06/04 14:13:50 by sylvain          ###   ########.fr       */
+/*   Updated: 2022/07/08 13:08:57 by sylvain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@
 # include <errno.h>
 # include <limits.h>
 # include <stdbool.h>
-
-/*
-** -------------------------- Structs ---------------------------------
-*/
-typedef struct s_node
-{
-	int				value;
-	struct s_node	*next;
-}	t_node;
-
-typedef t_node*	t_stack;
 
 /*
 ** -------------------------- Chars ---------------------------------
@@ -76,6 +65,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
+int		ft_pow(int base, int exponent);
 
 /*
 ** -------------------------- Strings ---------------------------------
@@ -96,27 +86,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
 int		ft_stritercount(char *str, bool (*f)(int));
-
-/*
-** -------------------------- Linked lists ---------------------------------
-*/
-
-void	print_list(t_node *head);
-t_node	*create_new_node(int value);
-t_node	*insert_at_head(t_node **head, t_node *node_to_insert);
-void	insert_after_node(t_node *node_to_insert_after, t_node *node_to_insert);
-
-t_node	*find_node(t_node *head, int value);
-t_node	*find_last_node(t_node *head);
-t_node	*find_before_last_node(t_node *head);
-
-/*
-** -------------------------- Stacks ---------------------------------
-*/
-
-bool	push(t_stack *stack, int value);
-int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
-int		stack_length(t_stack *stack);
 
 #endif
